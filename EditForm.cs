@@ -26,18 +26,18 @@ namespace MetaDataStringEditor {
             ShowDialog(Owner);
         }
 
-        private void 保存_Click(object sender, EventArgs e) {
+        private void Save_Click(object sender, EventArgs e) {
             Owner.Invoke(new Action(delegate {
                 item.SetNewStr(textBox1.Text.Replace("\r", ""));
             }));
             Close();
         }
 
-        private void 放弃此次修改_Click(object sender, EventArgs e) {
+        private void Discard_Click(object sender, EventArgs e) {
             Close();
         }
 
-        private void 还原该串的修改_Click(object sender, EventArgs e) {
+        private void Undo_Click(object sender, EventArgs e) {
             Owner.Invoke(new Action(delegate {
                 item.Discard();
             }));
