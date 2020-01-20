@@ -1,8 +1,8 @@
-# global-metadata.dat的部分字符串修改工具
-&emsp;&emsp;对于Unity-il2cpp脚本后端导出的Android游戏，代码中出现的字符串会编译进assets\bin\Data\Managed\Metadata\global-metadata.dat文件，作为汉化工作的一环，简单撸了一个工具对其中的字符串做修改。
-## 参考资料
+# global-metadata.dat Partial string modification tool
+&emsp;&emsp;For Android games exported by the Unity-il2cpp script backend, the strings appearing in the code will be compiled into the assets\bin\Data\Managed\Metadata\global-metadata.dat file. As a part of the localization work, I simply took a tool Modify the strings in it.
+## References
 - [il2cppdumper](https://github.com/Perfare/Il2CppDumper)<br>
-对该文件内容的理解都是从这个工具的源码学到的，这个工具本身是用来从编译后的libil2cpp.so文件和global-metadata.dat文件里面导出类的定义，导出形式包括IDA可用的重命名脚本、UABE和AssetStudio可用的DLL等，是个很好用的工具。
-## 修改内容
-&emsp;&emsp;在global-metadata.dat中，对代码中的字符串的保存方式是，头部有一个列表放每一个字符串的偏移量、长度等信息，然后在数据区有一个区域直接紧凑放所有的字符串，有头部的列表，所以不需要\0结尾。<br>
-&emsp;&emsp;因为修改前后字符串数量不变，所以对列表的修改是直接在原来的区域上覆盖。数据区的长度可能发生变化，如果修改过后，数据区的长度小于等于原先的长度，则直接覆盖写入，如果过长，则写入到文件尾。
+The understanding of the content of this file is learned from the source code of this tool. The tool itself is used to export the class definition from the compiled libil2cpp.so file and global-metadata.dat file. Renaming scripts, UABE, and DLLs available for AssetStudio is a great tool.
+## Modify content
+&emsp;&emsp;In global-metadata.dat, the way to save the strings in the code is that there is a list in the header to put the offset, length and other information of each string, and then there is an area in the data area to compactly put all the A string with a list of heads, so no need to end with file.<br>
+&emsp;&emsp;Because the number of strings does not change before and after the modification, the modification of the list is directly overwritten on the original area. The length of the data area may change. If the length of the data area is less than or equal to the original length after the modification, the data is directly overwritten. If it is too long, it is written to the end of the file.
